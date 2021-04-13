@@ -1,0 +1,89 @@
+// COLORS
+$primary-color: #034c81;
+$secondary-color: #2ca3fa;
+$light-blue-color: #5ba2f4;
+$white-color: #ffffff;
+$gray-color: #7f858c;
+$bag-color: #c9bbaa;
+// general style
+.App {
+  font-family: Roboto;
+}
+p {
+  font-size: 16px;
+  font-weight: 400;
+  color: $gray-color;
+}
+h1 {
+  font-size: 70px;
+  font-weight: 700;
+  color: $gray-color;
+}
+// start navbar
+.navb {
+  background: $light-blue-color;
+  a {
+    color: $white-color;
+  }
+  button span {
+    background: #ffffff;
+    color: black;
+  }
+}
+// end navbar
+// start header
+.head {
+  background-image: url("../images/banner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 700px;
+  .container {
+    padding-top: 100px;
+    h2,
+    p .icon {
+      color: red;
+    }
+  }
+}
+// end header
+// start search box
+.search-box {
+  border: 2px solid $primary-color;
+  padding: 50px;
+  margin: 40px 0;
+}
+.search-form {
+  border: 1px solid $gray-color;
+  padding: 10px;
+  .search-icons {
+    color: $light-blue-color;
+  }
+}
+
+// end search box
+// start Selling
+.selling {
+  margin: 50px 0;
+}
+
+// end Selling
+// start Card
+.img-icon {
+  width: fit-content;
+  display: block;
+  margin-bottom: 18px;
+}
+//end Card
+// start Booking
+.booking {
+  padding: 50px 20px;
+}
+// end Booking
+//start footer
+footer {
+  background: $light-blue-color;
+  color: $white-color;
+}
+
+// end footer
