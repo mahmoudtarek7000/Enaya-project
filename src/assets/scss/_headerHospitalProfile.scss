@@ -1,0 +1,28 @@
+@import "./global";
+@import "./variables";
+.section {
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  padding-bottom: 20px;
+  .profile_logo {
+    width: 150px;
+  }
+  .logo-name_cont {
+    h3 {
+      color: $congressBlue;
+      -webkit-text-stroke: 0.5px $dodgerBlue;
+      font-weight: 700;
+    }
+    .rate {
+      font-size: 22px;
+      font-weight: 500;
+      color: gold;
+    }
+  }
+}

@@ -16,6 +16,7 @@ import Signhospital from './components/sign_up/Signhospital';
 import Signpatient from './components/sign_up/Signpatient';
 import loghospital from './components/log_in/loghospital';
 import logpatient from './components/log_in/logpatient';
+import HospitalProfile from './components/HospitalProfile/HospitalProfile';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
       <Router>
         <MyNav />
+        {/* <HospitalProfile/> */}
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route path="/about" component={About_us}></Route>
