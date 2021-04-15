@@ -1,9 +1,10 @@
 import React from 'react'
 
-function About_us() {
+function About_us(query) {
+    console.log(query)
     return (
         <div>
-            About_us
+            {query.location.query}
         </div>
     )
 }

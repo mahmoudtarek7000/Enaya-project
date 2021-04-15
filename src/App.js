@@ -16,6 +16,8 @@ import Signhospital from './components/sign_up/Signhospital';
 import Signpatient from './components/sign_up/Signpatient';
 import loghospital from './components/log_in/loghospital';
 import logpatient from './components/log_in/logpatient';
+import HospitalProfile from './components/HospitalProfile/HospitalProfile';
+import Search_results from './components/Search_results/Search_results';
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
 
       <Router>
         <MyNav />
+        {/* <HospitalProfile/> */}
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route path="/about" component={About_us}></Route>
@@ -34,6 +37,7 @@ function App() {
           <Route path="/signpateint" component={Signpatient}></Route>
           <Route path="/loghospital" component={loghospital}></Route>
           <Route path="/logpateint" component={logpatient}></Route>
+          <Route path="/searchresults" component={Search_results}></Route>
         </Switch>
         <Footer />
       </Router>

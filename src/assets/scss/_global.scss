@@ -1,0 +1,15 @@
+@import "./variables";
+
+.section-cont {
+    padding: $sectionPadding;
+}
+
+h2 {
+    font-weight: 700  !important;
+    color: $congressBlue;
+    text-align: center;
+}
+p {
+    font-size: 18px;
+    font-weight: 600;
+}
