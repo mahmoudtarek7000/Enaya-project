@@ -3,7 +3,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import MouseIcon from "@material-ui/icons/Mouse";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import { Link } from "react-router-dom";
-import { FaCity } from "react-icons/fa";
+
 function SearchForm() {
   const [city, setCity] = useState('');
   const [hospitalName, setHospitalName] = useState('');
