@@ -14,24 +14,34 @@ function Hospital_card({results}) {
   const [hospitals, sethospitals] = useState([]);
   const [doctors,setDoctors] = useState([]);
     useEffect(() => {
+      { results[0] &&
      db.collection("hospitals").where('address.governorate' , "==", `${results[0]}`)
       .get()
       .then((querySnapshot) => {
-      let unsubscribe =  querySnapshot.docs.map((doc) => {
+      let data =  querySnapshot.docs.map((doc) => {
               // doc.data() is never undefined for query doc snapshots
-                console.log(doc.data().specialities);
+                console.log(doc.data());
               return {...doc.data(),id:doc.id} 
               
           });
-          sethospitals(unsubscribe)
-      }) 
-     
+          sethospitals(data)
+      }) }
+     { results[2] &&
+     db.collection("hospitals").where('name' , "==", `${results[2]}`)
+      .get()
+      .then((querySnapshot) => {
+      let data =  querySnapshot.docs.map((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              return {...doc.data(),id:doc.id} 
+              
+          });
+          sethospitals(data)
+      }) }
       db.collection("hospitals")
       .get()
       .then((querySnapshot) => {
         let searchResults=querySnapshot.docs.reduce((acc,doc) => {
               // doc.data() is never undefined for query doc snapshots
-                console.log([doc.data()]);
               return  [...acc,...doc.data().specialities[results[1]]]
               
           },[]); 
@@ -46,7 +56,7 @@ function Hospital_card({results}) {
 
     return (
      <div>
-        {results[0]
+        {results[0] || results[2]
         ? hospitals.map((hospital)=>{ return <div key={hospital.id}>
         <Card className="d-flex flex-row card my-5 rounded p-4 mahmoud">
      <CardImg top className="img-fluid photo w-25 rounded-circle" src={hospital.logo} alt="Card image cap" />
