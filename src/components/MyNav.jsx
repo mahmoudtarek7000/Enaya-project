@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import { auth, db } from "./firebase/config";
 import {
   Collapse,
   Navbar,
@@ -12,11 +14,32 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import { SignalCellularNull } from "@material-ui/icons";
 
 const MyNav = (props) => {
+  const { user, userRole } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+  const [date, setdata] = useState(null)
+
+  useEffect(() => {
+    if (userRole && user) {
+      console.log(user.uid, userRole)
+      db.collection(userRole)
+      .doc(user.uid)
+      .onSnapshot((doc) => {
+        console.log("object")
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          setdata({...doc.data(), id : doc.id})
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      });
+
+    }
+  }, [userRole, user]);
 
   return (
     <div className="navb">
@@ -66,7 +89,36 @@ const MyNav = (props) => {
                   <DropdownItem>Available Intensive Care Room</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
+              {user ? (
+                <button
+                  className="btn btn-danger ml-2"
+                  onClick={() => {
+                    auth.signOut();
+                  }}
+                >
+                  {data && <p>{data.name}</p>}
+                </button>
+              ) : (
+                <div className="d-flex">
+                  <NavItem>
+                    <Link
+                      className="nav-link btn btn-primary ml-2"
+                      to="/loghospital"
+                    >
+                      LOG IN
+                    </Link>
+                  </NavItem>
+                  <NavItem>
+                    <Link
+                      className="nav-link btn btn-primary ml-2"
+                      to="/signhospital"
+                    >
+                      Sign Up
+                    </Link>
+                  </NavItem>
+                </div>
+              )}
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   SIGN UP
                 </DropdownToggle>
@@ -83,7 +135,7 @@ const MyNav = (props) => {
                   <Link to="/loghospital"><DropdownItem>HOSPITAL</DropdownItem></Link>
                   <Link to="/logpateint"><DropdownItem>PATIENT</DropdownItem></Link>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
         </Navbar>
