@@ -2,7 +2,12 @@ import "./assets/scss/App.scss";
 import "fontsource-roboto";
 import MyNav from "./components/MyNav";
 import Footer from "./components/Footer";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Home from "./components/Home";
 import About_us from "./components/About_us";
 import Contact_us from "./components/Contact_us";
@@ -13,31 +18,43 @@ import Signhospital from "./components/sign_up/Signhospital";
 import Loghospital from "./components/log_in/Loghospital";
 // import logpatient from './components/log_in/logpatient';
 import HospitalProfile from "./components/HospitalProfile/HospitalProfile";
-import { useContext} from "react";
-import { AuthContext} from "./context/AuthProvider";
-
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthProvider";
+import Search_results from "./components/Search_results/Search_results"
 function App() {
   const { user } = useContext(AuthContext);
 
   return (
-      <div className="App">
-        <Router>
-          <MyNav />
-          {/* <HospitalProfile/> */}
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route path="/about" component={About_us}></Route>
-            <Route path="/contact" component={Contact_us}></Route>
-            <Route path="/bookdoctor" component={BookDoctor}></Route>
-            <Route path="/reserveroom" component={ReserveRoom}></Route>
-            <Route path="/signhospital" render = {()=> {return user ? (<Redirect to="/"/>) : <Signhospital/>}}></Route>
-            {/* <Route path="/signpateint" component={Signpatient}></Route> */}
-            <Route path="/loghospital" render = {()=> {return user ? (<Redirect to="/"/>) : <Loghospital/>}}></Route>
-            {/* <Route path="/logpateint" component={logpatient}></Route> */}
-          </Switch>
-          <Footer />
-        </Router>
-      </div>
+    <div className="App">
+      <Router>
+        <MyNav />
+        {/* <HospitalProfile/> */}
+        <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/about" component={About_us}></Route>
+          <Route path="/contact" component={Contact_us}></Route>
+          <Route path="/bookdoctor" component={BookDoctor}></Route>
+          <Route path="/reserveroom" component={ReserveRoom}></Route>
+          <Route
+            path="/signhospital"
+            render={() => {
+              return user ? <Redirect to="/" /> : <Signhospital />;
+            }}
+          ></Route>
+          {/* <Route path="/signpateint" component={Signpatient}></Route> */}
+          <Route
+            path="/loghospital"
+            render={() => {
+              return user ? <Redirect to="/" /> : <Loghospital />;
+            }}
+          ></Route>
+          {/* <Route path="/logpateint" component={logpatient}></Route> */}
+          <Search_results></Search_results>
+          <Route path="/searchresults" component={Search_results}></Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 
