@@ -83,10 +83,66 @@ h1 {
   padding: 50px 20px;
 }
 // end Booking
+// start Contact Us
+.form {
+  border-right: 1px solid $gray-color;
+  .form-inputs {
+    margin-bottom: 0.5rem;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .form-input {
+      display: inline-block;
+      padding-left: 10px;
+      outline: none;
+      border-radius: 2px;
+      width: 70%;
+    }
+    .form-input::placeholder {
+      color: #595959;
+      font-size: 12px;
+    }
+    .form-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+      color: #000;
+      .star {
+        color: red;
+      }
+    }
+  }
+  .form-inputs p {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #f00e0e;
+  }
+
+  .form-input-btn {
+    width: 20%;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 2px;
+    background: red;
+    outline: none;
+    border: none;
+    color: $white-color;
+    font-size: 1rem;
+  }
+  p {
+    font-weight: 400;
+  }
+}
+.call-us {
+  p {
+    font-weight: 400;
+  }
+}
+// end Contact Us
 //start footer
 footer {
   background: $light-blue-color;
   color: $white-color;
 }
-
 // end footer

@@ -25,7 +25,7 @@ function App() {
 
       <Router>
         <MyNav />
-        {/* <HospitalProfile/> */}
+
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route path="/about" component={About_us}></Route>
