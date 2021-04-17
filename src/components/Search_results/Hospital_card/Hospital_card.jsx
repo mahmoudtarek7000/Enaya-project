@@ -3,7 +3,7 @@ import { HiLocationMarker } from "react-icons/hi";
 import { FaPhoneAlt,FaMobileAlt } from "react-icons/fa";
 import { BiHealth } from "react-icons/bi";
 import { MdTitle } from "react-icons/md";
-import {db} from '../../../Firebase/firbase';
+import {db} from "../../firebase/config"
 import "./Hospital_card.scss";
 import {
     Card, CardImg, CardText, CardBody,

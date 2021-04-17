@@ -2,12 +2,13 @@ const SignUpValidation = (values, focused) => {
   let errors = {};
   if (!values.name && focused.name) {
     errors.name = "This field is required";
-  } else if (
-    !/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$/g.test(values.name) &&
-    focused.name
-  ) {
-    errors.name = "This field accepts characters only";
-  } else if (values.name.length < 8 && focused.name) {
+  // } else if (
+  //   !/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$/g.test(values.name) &&
+  //   focused.name
+  // ) {
+  //   errors.name = "This field accepts characters only";
+  // } 
+  }else if (values.name.length < 8 && focused.name) {
     errors.name = "Name must be not less than 8";
   }
   if (!values.email && focused.email) {

@@ -4,10 +4,8 @@ function Head() {
   return (
     <div className="head">
       <div className="container">
-        <h1>Better Healthcare for a Better Life</h1>
-        <p>
-          Book online or <CallIcon className="icon"/> call 16676
-        </p>
+        <h1 className="text-white">Enaya</h1>
+        <h2 className="text-white text-left">Better Healthcare for a Better Life</h2>
       </div>
     </div>
   );

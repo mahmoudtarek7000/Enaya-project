@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userRole, setUserRole] = useState(null);
+  const [userType, setUserType] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -38,13 +38,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const userLogin = (userRoleParam) => {
-    setUserRole(userRoleParam);
+    setUserType(userRoleParam);
   };
   if (loading) return <p>Loading...</p>;
 
   return (
     <AuthContext.Provider
-      value={{ user, handleUserProfile, userLogin, userRole }}
+      value={{ user, handleUserProfile, userLogin, userType }}
     >
       {children}
     </AuthContext.Provider>

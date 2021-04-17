@@ -11,6 +11,7 @@ $bag-color: #c9bbaa;
 // general style
 .App {
   font-family: Roboto;
+  min-height: 100vh;
 }
 p {
   font-size: 16px;
@@ -24,9 +25,12 @@ h1 {
 }
 // start navbar
 .navb {
-  background: $light-blue-color;
+  background: $primary-color;
   a {
     color: $white-color;
+  }
+  a:hover {
+    color: $secondary-color;
   }
   button span {
     background: #ffffff;
@@ -36,31 +40,92 @@ h1 {
 // end navbar
 // start header
 .head {
-  background-image: url("../images/banner.png");
+  // linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(44,163,250,0) 0%, rgba(0,212,255,1) 150%),
+  background: url("https://preview.colorlib.com/theme/hospice/img/banner/home.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 700px;
+  height: 500px;
   .container {
     padding-top: 100px;
-    h2,
-    p .icon {
-      color: red;
+    h1 {
+      font-size: 150px;
+      font-weight: 700;
+    }
+    h2 {
+      margin-left: 10px;
+      font-size: 30px;
+      font-weight: 400 !important;
     }
   }
 }
 // end header
 // start search box
 .search-box {
-  border: 2px solid $primary-color;
+  background: $primary-color;
+  border-radius: 10px;
   padding: 50px;
-  margin: 40px 0;
+  margin: 60px 0;
+  box-shadow: 0px 0px 22px -8px #000000;
 }
 .search-form {
-  border: 1px solid $gray-color;
   padding: 10px;
-  .search-icons {
-    color: $light-blue-color;
+
+  //dropdown
+  .select {
+    border: 1px solid #d3d3d3;
+    overflow: hidden;
+    height: 60px;
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+    background-color: $white-color;
+    width: 280px;
+  }
+
+  select {
+    height: 60px;
+    padding: 5px 5px 5px 15px;
+    border: 0;
+    font-size: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #00468b;
+    outline: none;
+    cursor: pointer;
+    width: 280px;
+  }
+  select option {
+    background-color: #f0f0f0;
+    font-size: 18px;
+    width: 100%;
+  }
+  .dropIcon {
+    color: $secondary-color;
+    padding: 12px 8px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    z-index: 1;
+    text-align: center;
+    height: 100%;
+    font-size: 45px !important;
+    pointer-events: none;
+    box-sizing: border-box;
+    font-size: 35px;
+    cursor: pointer;
+  }
+  .searchInput {
+    border: none;
+    outline: none;
+    font-size: 18px;
+    height: 60px;
+    border-radius: 30px;
+    padding-left: 30px;
+  }
+  .searchBtn {
+    border-radius: 30px;
   }
 }
 
@@ -83,10 +148,69 @@ h1 {
   padding: 50px 20px;
 }
 // end Booking
+// start Contact Us
+.form {
+  border-right: 1px solid $gray-color;
+  .form-inputs {
+    margin-bottom: 0.5rem;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .form-input {
+      display: inline-block;
+      border: none;
+      border: 1px solid $gray-color;
+      padding-left: 10px;
+      outline: none;
+      width: 70%;
+      height: 35px;
+      font-size: 14px;
+    }
+    .form-input::placeholder {
+      color: #595959;
+      font-size: 14px;
+    }
+    .form-label {
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #000;
+      .star {
+        color: red;
+      }
+    }
+  }
+  .form-inputs p {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #f00e0e;
+  }
+
+  .form-input-btn {
+    width: 20%;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 2px;
+    background: red;
+    outline: none;
+    border: none;
+    color: $white-color;
+    font-size: 1rem;
+  }
+  p {
+    font-weight: 400;
+  }
+}
+.call-us {
+  p {
+    font-weight: 400;
+  }
+}
+// end Contact Us
 //start footer
 footer {
   background: $light-blue-color;
   color: $white-color;
 }
-
 // end footer

@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="py-5 mt-auto">
+    <footer className="section-cont">
       <div className="container">
         <div className="row">
           <div className="col-lg-3 col-md-6">

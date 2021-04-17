@@ -18,14 +18,15 @@ import Signhospital from "./components/sign_up/Signhospital";
 import Loghospital from "./components/log_in/Loghospital";
 // import logpatient from './components/log_in/logpatient';
 import HospitalProfile from "./components/HospitalProfile/HospitalProfile";
+import PatientProfile from "./components/HospitalProfile/PatientProfile";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthProvider";
-import Search_results from "./components/Search_results/Search_results"
-function App() {
-  const { user } = useContext(AuthContext);
+import Search_results from "./components/Search_results/Search_results";
 
+function App() {
+  const { user, userType } = useContext(AuthContext);
   return (
-    <div className="App">
+    <div className="App d-flex flex-column justify-content-between">
       <Router>
         <MyNav />
         {/* <HospitalProfile/> */}
@@ -49,8 +50,10 @@ function App() {
             }}
           ></Route>
           {/* <Route path="/logpateint" component={logpatient}></Route> */}
-          <Search_results></Search_results>
           <Route path="/searchresults" component={Search_results}></Route>
+          <Route path="/:id">
+            {userType == "hospitals" ? <HospitalProfile /> : <PatientProfile />}
+          </Route>
         </Switch>
         <Footer />
       </Router>

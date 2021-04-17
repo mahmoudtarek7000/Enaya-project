@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Specialities = () => {
+const Specialities = ({ specialities }) => {
   const classes = useStyles();
 
   return (
@@ -36,38 +36,54 @@ const Specialities = () => {
               <div className="row">
                 <div className="col-12 col-md-6 d-flex align-items-center pl-2 mb-3">
                   <div className="w-25 mr-3">
-                    <img src= "" alt="image1" className="w-100 rounded-circle"  />
+                    <img
+                      src={specialities.Dentistry[0].photo}
+                      alt="image1"
+                      className="w-100 rounded-circle"
+                    />
                   </div>
                   <div>
-                    <h4>Mahmoud Taha</h4>
-                    <p>Surgery</p>
+                    <h4>{specialities.Dentistry[0].name}</h4>
+                    <p>{specialities.Dentistry[0].title}</p>
                   </div>
                 </div>
                 <div className="col-12 col-md-6 d-flex align-items-center pl-2 mb-3">
                   <div className="w-25 mr-3">
-                    <img src= "" alt="image1" className="w-100 rounded-circle" />
+                    <img
+                      src={specialities.Dentistry[0].photo}
+                      alt="image1"
+                      className="w-100 rounded-circle"
+                    />
                   </div>
                   <div>
-                    <h4>Mahmoud Taha</h4>
-                    <p>Surgery</p>
+                    <h4>{specialities.Dentistry[0].name}</h4>
+                    <p>{specialities.Dentistry[0].title}</p>
                   </div>
                 </div>
                 <div className="col-12 col-md-6 d-flex align-items-center pl-2 mb-3">
                   <div className="w-25 mr-3">
-                    <img src= "" alt="image1" className="w-100 rounded-circle" />
+                    <img
+                      src={specialities.Dentistry[1].photo}
+                      alt="image1"
+                      className="w-100 rounded-circle"
+                    />
                   </div>
                   <div>
-                    <h4>Mahmoud Taha</h4>
-                    <p>Surgery</p>
+                    <h4>{specialities.Dentistry[1].name}</h4>
+                    <p>{specialities.Dentistry[1].title}</p>
                   </div>
                 </div>
                 <div className="col-12 col-md-6 d-flex align-items-center pl-2 mb-3">
                   <div className="w-25 mr-3">
-                    <img src= "" alt="image1" className="w-100 rounded-circle" />
+                    <img
+                      src={specialities.Dentistry[1].photo}
+                      alt="image1"
+                      className="w-100 rounded-circle"
+                    />
                   </div>
                   <div>
-                    <h4>Mahmoud Taha</h4>
-                    <p>Surgery</p>
+                    <h4>{specialities.Dentistry[1].name}</h4>
+                    <p>{specialities.Dentistry[1].title}</p>
                   </div>
                 </div>
               </div>
