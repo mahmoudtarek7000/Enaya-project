@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import { auth, db } from "./firebase/config";
 import {
   Collapse,
   Navbar,
@@ -12,17 +14,41 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import { SignalCellularNull } from "@material-ui/icons";
 
 const MyNav = (props) => {
+  const { user, userType } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+  const [data, setdata] = useState(null);
+
+  useEffect(() => {
+    console.log(userType);
+
+    if (userType && user) {
+      db.collection(userType)
+        .doc(user.uid)
+        .onSnapshot((doc) => {
+          console.log("object");
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
+            setdata({ ...doc.data(), id: doc.id });
+          } else {
+            console.log("No such document!");
+          }
+        });
+    }
+  }, [userType, user]);
 
   return (
     <div className="navb">
       <div className="container">
         <Navbar expand="md">
-          <NavbarBrand href="/">Logo</NavbarBrand>
+          <Link className="nav-link h4 logo" to="/">
+            Enaya
+          </Link>
+          {/* <NavbarBrand href="/">
+            Logo</NavbarBrand> */}
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -66,24 +92,42 @@ const MyNav = (props) => {
                   <DropdownItem>Available Intensive Care Room</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  SIGN UP
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <Link to="/signhospital"><DropdownItem>HOSPITAL</DropdownItem></Link>
-                  <Link to="/signpateint"><DropdownItem>PATIENT</DropdownItem></Link>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  LOG IN
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <Link to="/loghospital"><DropdownItem>HOSPITAL</DropdownItem></Link>
-                  <Link to="/logpateint"><DropdownItem>PATIENT</DropdownItem></Link>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              {user ? (
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                    {data?.name}
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem
+                      onClick={() => {
+                        auth.signOut();
+                      }}
+                    >
+                      <Link className="text-dark" to="/">
+                        Sign Out
+                      </Link>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Link className="text-dark" to="/0aCV9wMkAsfR2zrbGa8d">
+                        View Profile
+                      </Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              ) : (
+                <div className="d-flex">
+                  <NavItem>
+                    <Link className="nav-link ml-2" to="/loghospital">
+                      Log In
+                    </Link>
+                  </NavItem>
+                  <NavItem>
+                    <Link className="nav-link ml-2" to="/signhospital">
+                      Sign Up
+                    </Link>
+                  </NavItem>
+                </div>
+              )}
             </Nav>
           </Collapse>
         </Navbar>

@@ -3,7 +3,7 @@ import Card from "./Card";
 
 function Selling() {
   return (
-    <div className="row selling">
+    <div className="row selling section-cont">
       <Card
         iconUrl="https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/26308/_next/static/images/medical-care-icon.svg"
         header="All your healthcare needs"
@@ -21,7 +21,7 @@ function Selling() {
       />
       <Card
         iconUrl="https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/26308/_next/static/images/security-icon.svg"
-        header="Book for free, and pay in the clinic"
+        header="Book for free, and pay in the Hospital"
         paragraph="The consultation fees stated on Vezeeta are the actual doctor's fees with no extra charges."
       />
     </div>

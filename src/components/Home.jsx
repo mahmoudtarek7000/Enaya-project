@@ -11,7 +11,7 @@ function Home() {
       <div className="container">
         <SearchBox />
         <Selling />
-        <Booking />
+        {/* <Booking /> */}
       </div>
     </div>
   );

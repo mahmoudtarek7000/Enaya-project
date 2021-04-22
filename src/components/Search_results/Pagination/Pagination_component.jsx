@@ -1,46 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-const Pagination_component = (props) => {
+const Pagination_component = ({resultsPerPage,paginate,nextPage,pervPage,totalHospitals,totalDoctors}) => {
+  const pageNum = [];
+  
+  for (let i = 1; i <= Math.ceil(totalDoctors / resultsPerPage); i++) {
+    console.log([...pageNum,i])
+    pageNum.push(i);
+  }
   return (
     <Pagination className="d-flex justify-content-center" aria-label="Page navigation example">
-    <PaginationItem>
-        <PaginationLink first href="#" />
-      </PaginationItem>
       <PaginationItem>
-        <PaginationLink previous href="#" />
+        <PaginationLink previous onClick={pervPage} />
       </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">
-          1
+      { pageNum.map(num=>{
+        return  <PaginationItem key={num}>
+        <PaginationLink onClick={paginate(num)}>
+         {num}
         </PaginationLink>
       </PaginationItem>
+      })
+     
+}
       <PaginationItem>
-        <PaginationLink href="#">
-          2
-        </PaginationLink>
+        <PaginationLink next onClick={nextPage} />
       </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">
-          3
-        </PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">
-          4
-        </PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">
-          5
-        </PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink next href="#" />
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink last href="#" />
-      </PaginationItem>
+  
     </Pagination>
   );
 }
