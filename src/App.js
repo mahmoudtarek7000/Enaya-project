@@ -22,6 +22,10 @@ import PatientProfile from "./components/HospitalProfile/PatientProfile";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthProvider";
 import Search_results from "./components/Search_results/Search_results";
+import TermsOfUse from "./components/TermsOfUse";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import DoctorPrivacy from "./components/DoctorPrivacy";
+import CoronaVirus from "./components/coronavirus/CoronaVirus";
 
 function App() {
   const { user, userType } = useContext(AuthContext);
@@ -36,6 +40,10 @@ function App() {
           <Route path="/contact" component={Contact_us}></Route>
           <Route path="/bookdoctor" component={BookDoctor}></Route>
           <Route path="/reserveroom" component={ReserveRoom}></Route>
+          <Route path="/terms" component={TermsOfUse}></Route>
+          <Route path="/privacypolicy" component={PrivacyPolicy}></Route>
+          <Route path="/drprivacypolicy" component={DoctorPrivacy}></Route>
+          <Route path="/coronavirus" component={CoronaVirus} ></Route>
           <Route
             path="/signhospital"
             render={() => {
@@ -54,6 +62,7 @@ function App() {
           <Route path="/:id">
             {userType == "hospitals" ? <HospitalProfile /> : <PatientProfile />}
           </Route>
+
         </Switch>
         <Footer />
       </Router>

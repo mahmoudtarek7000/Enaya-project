@@ -1,11 +1,12 @@
 import React from "react";
+import { Button } from "reactstrap";
 
 function Contact_us() {
   return (
     <div className="contact-us p-5">
       <div className="container">
         <div className="row">
-          <form className="form col-lg-7"  id="usrform">
+          <form className="form col-lg-7" id="usrform">
             <h2 className="text-left">Contact Us</h2>
             <p>We will be happy to receive your inquiries and suggestions.</p>
             <div className="form-inputs">
@@ -51,9 +52,9 @@ function Contact_us() {
                 placeholder="Your Message"
               />
             </div>
-            <button className="form-input-btn" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               SEND
-            </button>
+            </Button>
           </form>
           <div className="col-lg-5 pl-5 call-us">
             <h2 className="text-left">Call Us</h2>
