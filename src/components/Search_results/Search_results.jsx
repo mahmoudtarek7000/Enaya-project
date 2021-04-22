@@ -46,7 +46,23 @@ function Search_results({ match }) {
    }
   }, []);
       sethospitals(nameResults)
-   } }
+   } 
+   // search by speciality and name
+   else if (results.city == "none" && results.name !== "none" && results.special !== "none") {
+    console.log(allHospitals)
+   const nameResults = fuseResults.reduce((acc, result) => {
+    // doc.data() is never undefined for query doc snapshots
+   if (result.item.specialities.hasOwnProperty(`${results.special}`) === true) {
+    return [...acc,result.item]
+   }
+   else {
+     return acc
+   }
+  }, []);
+      sethospitals(nameResults)
+   }
+  }
+   
   },[allHospitals])
 
 // useEffect for remain 
@@ -91,22 +107,25 @@ function Search_results({ match }) {
     })
    }
   
-   /*
+   
    else if (results.city !== "none" && results.name == "none" && results.special !== "none"){
     db.collection("hospitals")
     .get()
     .then((querySnapshot) => {
-      let searchResults = querySnapshot.docs.map((doc) => {
+      let searchResults = querySnapshot.docs.reduce((acc,doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.data().specialities.hasOwnProperty(`${results.special}`) == true && (doc.data().address.governorate ==`${results.city}`)==true);
        if (doc.data().specialities.hasOwnProperty(`${results.special}`) == true && (doc.data().address.governorate ==`${results.city}`)==true){
-         return { ...doc.data(), id: doc.id }
+         return [...acc, doc.data()];
        }
-      });
+       else {
+         return acc;
+       }
+      },[]);
       console.log(searchResults)
       sethospitals(searchResults)
     })
-   } */
+   } 
       }
       
 
