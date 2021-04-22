@@ -26,6 +26,9 @@ import TermsOfUse from "./components/TermsOfUse";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import DoctorPrivacy from "./components/DoctorPrivacy";
 import CoronaVirus from "./components/coronavirus/CoronaVirus";
+import { Search } from "@material-ui/icons";
+import SearchBox from "./components/Search/SearchBox";
+import BookDoc from "./components/Book/BookDoc";
 
 function App() {
   const { user, userType } = useContext(AuthContext);
@@ -38,12 +41,13 @@ function App() {
           <Route exact path="/" component={Home}></Route>
           <Route path="/about" component={About_us}></Route>
           <Route path="/contact" component={Contact_us}></Route>
-          <Route path="/bookdoctor" component={BookDoctor}></Route>
+          <Route path="/bookdoctor/:id" component={BookDoctor}></Route>
           <Route path="/reserveroom" component={ReserveRoom}></Route>
           <Route path="/terms" component={TermsOfUse}></Route>
           <Route path="/privacypolicy" component={PrivacyPolicy}></Route>
           <Route path="/drprivacypolicy" component={DoctorPrivacy}></Route>
           <Route path="/coronavirus" component={CoronaVirus} ></Route>
+          <Route path="bookdoc" component={BookDoc}></Route>
           <Route
             path="/signhospital"
             render={() => {
@@ -58,7 +62,7 @@ function App() {
             }}
           ></Route>
           {/* <Route path="/logpateint" component={logpatient}></Route> */}
-          <Route path="/searchresults" component={Search_results}></Route>
+          <Route path="/searchresults/:searchType/:special/:city/:name" component={Search_results}></Route>
           <Route path="/:id">
             {userType == "hospitals" ? <HospitalProfile /> : <PatientProfile />}
           </Route>

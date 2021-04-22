@@ -9,12 +9,11 @@ const Sort = (props) => {
   return (
     <Dropdown className="d-flex justify-content-end mt-4 " isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle className="btn btn-info" caret>
-        Dropdown
+        Sort by
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem>Some Action</DropdownItem>
-        <DropdownItem>Some Action</DropdownItem>
-        <DropdownItem>Some Action</DropdownItem>
+        <DropdownItem>nearest</DropdownItem>
+        <DropdownItem>best rated</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

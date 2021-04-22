@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 
 function SearchForm() {
-  const [city, setCity] = useState("");
-  const [hospitalName, setHospitalName] = useState("");
-  const [specialist, setSpecialist] = useState("");
+  const [city, setCity] = useState("none");
+  const [hospitalName, setHospitalName] = useState("none");
+  const [searchType, setType] = useState("none");
+  const [specialist, setSpecialist] = useState("none");
   const cities = [
     { id: "1", governorate_name_ar: "القاهرة", governorate_name_en: "Cairo" },
     { id: "2", governorate_name_ar: "الجيزة", governorate_name_en: "Giza" },
@@ -100,22 +101,43 @@ function SearchForm() {
         return setSpecialist(`${target.value}`);
       case "hospital_name":
         return setHospitalName(`${target.value}`);
+        case "seacrh_for":
+          return setType(`${target.value}`);
     }
+    console.log(searchType);
   };
   return (
     <form className="search-form">
+      <div className="row text-center justify-content-center ml-3">
+      <div className="col-12">
+       <div className="select mb-5 mx-auto">
+            <select
+              name="seacrh_for"
+              onChange={sentQuery}
+              id="search_for"
+            >
+              <option disabled selected>search for</option>
+              <option value="hospitals">
+               Hospitals
+              </option>
+              <option value="doctors">Doctors</option>
+            </select>
+            <IoMdArrowDropdownCircle className="dropIcon" />
+          </div>
+          </div>
+          </div>
       <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center">
         <div className="mb-3">
           <label htmlFor="speciality" className="text-white mb-3 h4">
             Select A Speciality
           </label>
-          <div class="select">
+          <div className="select">
             <select
               name="choose_speciality"
               onChange={sentQuery}
               id="speciality"
             >
-              <option disabled>Select A Speciality</option>
+              <option disabled selected>Select A Speciality</option>
               <option value="Allegry and Immunology">
                 Allegry and Immunology
               </option>
@@ -130,7 +152,7 @@ function SearchForm() {
           </label>
           <div className="select">
             <select name="city" onChange={sentQuery} id="city">
-              <option key="0" disabled>
+              <option selected key="0" disabled>
                 Governorates
               </option>
               {cities.map((city) => {
@@ -158,10 +180,10 @@ function SearchForm() {
         </div>
       </div>
       <div className="text-center mt-2">
-        <button type="button" class="btn btn-outline-info px-5 py-1 searchBtn">
+        <button type="button" className="btn btn-outline-info px-5 py-1 searchBtn">
           <Link
             to={{
-              pathname: "/searchresults",
+              pathname: `/searchresults/${searchType}/${specialist}/${city}/${hospitalName}`,
               query: [city, specialist, hospitalName],
             }}
             className="nav-link text-white h4"

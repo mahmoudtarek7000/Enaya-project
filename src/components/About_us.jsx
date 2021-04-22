@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function About_us(query) {
-  console.log(query);
   return (
     <div className="aboutUs">
       {query.location.query}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,AAAA,CACX,gBAAgB,CAAE,OAAO,CAC5B",
+    "sources": [
+        "Search_results.scss"
+    ],
+    "names": [],
+    "file": "Search_results.min.css"
+}
