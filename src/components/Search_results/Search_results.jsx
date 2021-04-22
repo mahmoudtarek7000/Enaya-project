@@ -75,9 +75,23 @@ function Search_results({ match }) {
       
   })
 
-  // search for hospitals
+  // search for available intensive care with city
+    if (results.searchType == "care"){
+      db.collection('hospitals').onSnapshot((snap) => {
+        let data = snap.docs.reduce((acc,doc) => {
+          if (doc.data().address.governorate==`${results.city}`&&(doc.data().hasOwnProperty("intensiveCares") === true && (doc.data().intensiveCares > 0))){
+            return  [...acc,{...doc.data(),id: doc.id}]
+          }
+          else {
+            return acc ;
+          }
+        },[])
+        sethospitals(data)
+      }) 
+    }
 
-    if (results.searchType == "hospitals") {
+    // search for hospitals
+    else if (results.searchType == "hospitals") {
       // search by governorate only 
       if (results.city !== "none" && results.name == "none" && results.special == "none") {
         db.collection("hospitals").where("address.governorate", "==", `${results.city}`)
@@ -107,7 +121,8 @@ function Search_results({ match }) {
     })
    }
   
-   
+   // search by speciality and city 
+
    else if (results.city !== "none" && results.name == "none" && results.special !== "none"){
     db.collection("hospitals")
     .get()
@@ -116,7 +131,7 @@ function Search_results({ match }) {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.data().specialities.hasOwnProperty(`${results.special}`) == true && (doc.data().address.governorate ==`${results.city}`)==true);
        if (doc.data().specialities.hasOwnProperty(`${results.special}`) == true && (doc.data().address.governorate ==`${results.city}`)==true){
-         return [...acc, doc.data()];
+         return [...acc, {...doc.data(), id:doc.data().id}];
        }
        else {
          return acc;
@@ -127,9 +142,8 @@ function Search_results({ match }) {
     })
    } 
       }
-      
 
-      // search for doctors by speciality
+      // search for doctors
     else {
       db.collection("hospitals")
         .get()
@@ -137,7 +151,12 @@ function Search_results({ match }) {
           let searchResults = querySnapshot.docs.reduce((acc, doc) => {
             // doc.data() is never undefined for query doc snapshots
            console.log(doc.data().specialities[results.special])
-           if (doc.data().specialities[results.special]) {
+           // search for doctors by speciality only
+           if ((results.city == "none" && results.name == "none" && results.special !== "none") && doc.data().specialities[results.special]) {
+            return [...acc, { results: [...doc.data().specialities[results.special]], hospitalTitle: doc.data().name, hospitalCity: doc.data().address.governorate }]
+           }
+           // search for doctors by city and speciality
+           else if ((results.city !== "none" && results.name == "none" && results.special !== "none") &&( doc.data().specialities[results.special])&& doc.data().address.governorate==`${results.city}`){
             return [...acc, { results: [...doc.data().specialities[results.special]], hospitalTitle: doc.data().name, hospitalCity: doc.data().address.governorate }]
            }
            else {
@@ -150,8 +169,8 @@ function Search_results({ match }) {
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
-        console.log('mahmoud')
-    }
+    
+      }
   }, []);
 
 
@@ -169,9 +188,7 @@ function Search_results({ match }) {
 
   return (
     <div className="search-results">
-      <div className="container-fluid">
-        <SearchBox />
-      </div>
+
       <div className="container">
 
         <div className="row">
