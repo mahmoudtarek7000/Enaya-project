@@ -117,6 +117,7 @@ function SearchForm() {
               id="search_for"
             >
               <option disabled selected>search for</option>
+              <option value="care">Available intensive care</option>
               <option value="hospitals">
                Hospitals
               </option>
