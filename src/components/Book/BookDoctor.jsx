@@ -20,7 +20,6 @@ function BookDoctor({match}) {
     const [hospitalTitle, setTitle] = useState("")
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const [selectedTime, setSelectedTime] = React.useState(new Date());
-    const [sentData, setData] = useState([]);
     const [sentName, setName] = useState("");
     const [sentMail, setMail] = useState("");
     

@@ -14,15 +14,14 @@ $bag-color: #c9bbaa;
   min-height: 100vh;
 }
 p {
-  font-size: 16px;
-  font-weight: 400;
   color: $gray-color;
 }
 h1 {
   font-size: 70px;
   font-weight: 700;
-  color: $gray-color;
+  color: $white-color;
 }
+
 // start navbar
 .navb {
   background: $primary-color;
@@ -30,11 +29,8 @@ h1 {
     color: $white-color;
   }
   a:hover {
-    color: $secondary-color;
-  }
-  button span {
-    background: #ffffff;
-    color: black;
+    color: $white-color;
+    text-decoration: underline;
   }
 }
 // end navbar
@@ -45,7 +41,7 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 500px;
+  height: 600px;
   .container {
     padding-top: 100px;
     h1 {
@@ -186,18 +182,6 @@ h1 {
     margin-top: 0.5rem;
     color: #f00e0e;
   }
-
-  .form-input-btn {
-    width: 20%;
-    height: 50px;
-    margin-top: 10px;
-    border-radius: 2px;
-    background: red;
-    outline: none;
-    border: none;
-    color: $white-color;
-    font-size: 1rem;
-  }
   p {
     font-weight: 400;
   }
@@ -208,88 +192,217 @@ h1 {
   }
 }
 // end Contact Us
+// start about us
+.aboutUs {
+  a,
+  a:hover {
+    color: $white-color;
+  }
+}
+
+// end about us
 //start footer
 footer {
   background: $primary-color;
   color: $white-color;
+  a,
+  a:hover {
+    color: $white-color;
+  }
+}
+.termsOfUse {
+  p {
+    word-spacing: 2.3px;
+  }
+  .indented {
+    margin: 0 23px;
+    margin-bottom: 10px;
+  }
+}
+.privacyPolicy {
+  p {
+    word-spacing: 2.3px;
+  }
+  .indented {
+    margin: 0 23px;
+    margin-bottom: 10px;
+  }
+}
+.doctorPrivacy {
+  p {
+    word-spacing: 2.3px;
+  }
+  h5 {
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
 // end footer
-// booking component
-.booking{
-  background-color:#d7e1ec ;
-  .result-card{
-    border-radius: 20px !important;
-  .photo{
-    border-color:$primary-color;
-    max-width: 115px;
-    max-height: 100px ;
-    @media (max-width: 600px) {
-      width: 105px;
-      height: 75px;
-    }
-    @media (max-width: 420px) {
-      width: 50px  !important;
-      height: 50px;
+// Start Book
+.bookDoctor {
+  .bookDoctor__head {
+    padding-top: 100px;
+    background: url("../images/home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    color: $white-color;
+  }
+  a,
+  a:hover {
+    color: $white-color;
+  }
+  .bookDoctor__info {
+    background-color: $white-color;
+  }
+  .bookDoctor__advantages {
+    ul {
+      padding-left: 23px;
     }
   }
-    .txt{
+}
+.reserveRoom {
+  .reserveRoom__head {
+    padding-top: 200px;
+    background: url("http://www.cleopatrahospitals.com/media/17376/untitled-1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    color: $white-color;
+  }
+  .reserveRoom__head-content {
+    a,
+    a:hover {
+      color: $white-color;
+    }
+  }
+  .reserveRoom__recovery-content {
+    ul {
+      padding-left: 23px;
+      color: $gray-color;
+    }
+  }
+}
+// end Book
+// start Bring Care
+.BringCare {
+  margin: 50px 0;
+  h2 {
+    font-size: 40px;
+    line-height: 45px;
+    margin-bottom: 20px;
+    span {
+      display: block;
+      margin-top: 5px;
+      margin-bottom: 0;
+      line-height: inherit;
+    }
+  }
+  button {
+    margin-right: 1.5rem;
+    span:hover {
+      text-decoration: underline;
+    }
+  }
+  a,
+  a:hover {
+    color: $white-color;
+  }
+}
+// end Bring Care
+// start how Works
+.howWorks {
+  background: #e8f6ff;
+  padding: 70px 0;
+}
+
+// end how works
+// start corona Virus
+.coronaVirus {
+  background: #e8f6ff;
+  .main-head {
+    font-size: 62px;
+    font-weight: 700;
+  }
+}
+//end corona Virus
+// booking component
+.booking {
+  background-color: #d7e1ec;
+  .result-card {
+    border-radius: 20px !important;
+    .photo {
+      border-color: $primary-color;
+      max-width: 115px;
+      max-height: 100px;
+      @media (max-width: 600px) {
+        width: 105px;
+        height: 75px;
+      }
+      @media (max-width: 420px) {
+        width: 50px !important;
+        height: 50px;
+      }
+    }
+    .txt {
       font-size: 28px;
       @media (max-width: 420px) {
-          font-size: 16px;
+        font-size: 16px;
       }
-  }
-  .sub-txt{
+    }
+    .sub-txt {
       font-size: 18px;
       font-weight: 400;
       @media (max-width: 420px) {
         font-size: 14px;
-    }
+      }
     }
   }
-  .book-form{
+  .book-form {
     border-radius: 30px;
-    .book_title{
+    .book_title {
       background-color: $primary-color;
       border-radius: 30px 30px 0px 0;
     }
-    .book-btn{
+    .book-btn {
       border-radius: 30px;
       background-color: $primary-color;
     }
   }
 }
 //start search results
-.search-results{
-  .result-card{
+.search-results {
+  .result-card {
     border-radius: 40px !important;
-    .photo{
-      border-color:$primary-color;
+    .photo {
+      border-color: $primary-color;
       max-width: 120px;
-      max-height: 110px ;
+      max-height: 110px;
       @media (max-width: 440px) {
         width: 75px;
         height: 70px;
       }
-  }
-  .txt{
+    }
+    .txt {
       font-size: 28px;
       @media (max-width: 420px) {
-          font-size: 20px;
+        font-size: 20px;
       }
-  }
-  .sub-txt{
+    }
+    .sub-txt {
       font-size: 14px;
       font-weight: 400;
+    }
+    .view-btn {
+      background-color: $primary-color;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .result-icon {
+      color: $primary-color;
+    }
   }
-  .view-btn{
-    background-color: $primary-color;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  .result-icon{
-    color: $primary-color;
-  }
-  }
-  }
-
+}

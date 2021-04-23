@@ -1,6 +1,8 @@
 import React from "react";
-import Booking from "./Booking";
+import BringCare from "./BringCare";
+import CoronaSection from "./coronavirus/CoronaSection";
 import Head from "./Head";
+import HowWorks from "./HowWorks";
 import SearchBox from "./Search/SearchBox";
 import Selling from "./Selling";
 
@@ -11,8 +13,11 @@ function Home() {
       <div className="container">
         <SearchBox />
         <Selling />
-        {/* <Booking /> */}
       </div>
+      <HowWorks />
+      <CoronaSection />
+      <BringCare />
+      
     </div>
   );
 }
