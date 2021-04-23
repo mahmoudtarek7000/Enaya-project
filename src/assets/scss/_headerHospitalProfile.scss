@@ -1,22 +1,35 @@
 @import "./global";
 @import "./variables";
+
 .section {
   font-family: "Roboto", sans-serif;
 }
 
 .header {
+  position: relative;
+  z-index: 3;
+  display: flex;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: fixed;
   height: 400px;
   padding-bottom: 20px;
+  margin-bottom: 20px;
   .profile_logo {
     width: 150px;
+    height: 150px;
+    .bttn {
+      display: none;
+    }
+    &:hover .bttn {
+      display: block;
+    }
   }
   .logo-name_cont {
+    margin-bottom: -55px;
     h3 {
       color: $congressBlue;
-      -webkit-text-stroke: 0.5px $dodgerBlue;
+      // -webkit-text-stroke: 0.5px $dodgerBlue;
       font-weight: 700;
     }
     .rate {
@@ -26,3 +39,12 @@
     }
   }
 }
+// .header::after {
+//   content :"";
+//   background: linear-gradient(180deg, rgba(44,163,250,0) 41%, rgba(22,157,238,0.30015756302521013) 120%, rgba(44,163,250,1) 120%);
+//   display: block;
+//   position: absolute;
+//   width: 100%;
+//   height: 400px;
+//   z-index: 1;
+// }

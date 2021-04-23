@@ -14,7 +14,7 @@ const Loghospital = () => {
   const [values, setValues] = useState({ ...initialState });
   const [submitting, setSubmitting] = useState(false);
   const [userRole, setUserRole] = useState("patients");
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin, user } = useContext(AuthContext);
 
   const handleChanges = ({ target }) => {
     setValues({ ...values, [target.name]: target.value });
@@ -33,7 +33,8 @@ const Loghospital = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitting(true);
-    userLogin(userRole);
+    localStorage.setItem('user',`${userRole}`)
+    userLogin();
   };
   return (
     <div className="section-cont">

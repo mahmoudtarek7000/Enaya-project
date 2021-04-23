@@ -109,7 +109,7 @@ function SearchForm() {
           <label htmlFor="speciality" className="text-white mb-3 h4">
             Select A Speciality
           </label>
-          <div class="select">
+          <div className="select">
             <select
               name="choose_speciality"
               onChange={sentQuery}
@@ -158,7 +158,7 @@ function SearchForm() {
         </div>
       </div>
       <div className="text-center mt-2">
-        <button type="button" class="btn btn-outline-info px-5 py-1 searchBtn">
+        <button type="button" className="btn btn-outline-info px-5 py-1 searchBtn">
           <Link
             to={{
               pathname: "/searchresults",

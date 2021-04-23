@@ -14,9 +14,7 @@ import Contact_us from "./components/Contact_us";
 import BookDoctor from "./components/Book/BookDoctor";
 import ReserveRoom from "./components/Book/ReserveRoom";
 import Signhospital from "./components/sign_up/Signhospital";
-// import Signpatient from './components/sign_up/Signpatient';
 import Loghospital from "./components/log_in/Loghospital";
-// import logpatient from './components/log_in/logpatient';
 import HospitalProfile from "./components/HospitalProfile/HospitalProfile";
 import PatientProfile from "./components/HospitalProfile/PatientProfile";
 import { useContext } from "react";
@@ -29,7 +27,6 @@ function App() {
     <div className="App d-flex flex-column justify-content-between">
       <Router>
         <MyNav />
-        {/* <HospitalProfile/> */}
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route path="/about" component={About_us}></Route>
@@ -42,18 +39,14 @@ function App() {
               return user ? <Redirect to="/" /> : <Signhospital />;
             }}
           ></Route>
-          {/* <Route path="/signpateint" component={Signpatient}></Route> */}
           <Route
             path="/loghospital"
             render={() => {
               return user ? <Redirect to="/" /> : <Loghospital />;
             }}
           ></Route>
-          {/* <Route path="/logpateint" component={logpatient}></Route> */}
           <Route path="/searchresults" component={Search_results}></Route>
-          <Route path="/:id">
-            {userType == "hospitals" ? <HospitalProfile /> : <PatientProfile />}
-          </Route>
+          <Route path="/:id" children={userType == "hospitals" ? <HospitalProfile/> : <PatientProfile/>}/>
         </Switch>
         <Footer />
       </Router>

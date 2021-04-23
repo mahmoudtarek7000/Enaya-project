@@ -23,8 +23,6 @@ const MyNav = (props) => {
   const [data, setdata] = useState(null);
 
   useEffect(() => {
-    console.log(userType);
-
     if (userType && user) {
       db.collection(userType)
         .doc(user.uid)
@@ -47,8 +45,6 @@ const MyNav = (props) => {
           <Link className="nav-link h4 logo" to="/">
             Enaya
           </Link>
-          {/* <NavbarBrand href="/">
-            Logo</NavbarBrand> */}
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -92,44 +88,42 @@ const MyNav = (props) => {
                   <DropdownItem>Available Intensive Care Room</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              {user ? (
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    {data?.name}
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem
-                      onClick={() => {
-                        auth.signOut();
-                      }}
-                    >
-                      <Link className="text-dark" to="/">
-                        Sign Out
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <Link className="text-dark" to="/0aCV9wMkAsfR2zrbGa8d">
-                        View Profile
-                      </Link>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              ) : (
-                <div className="d-flex">
-                  <NavItem>
-                    <Link className="nav-link ml-2" to="/loghospital">
-                      Log In
-                    </Link>
-                  </NavItem>
-                  <NavItem>
-                    <Link className="nav-link ml-2" to="/signhospital">
-                      Sign Up
-                    </Link>
-                  </NavItem>
-                </div>
-              )}
             </Nav>
           </Collapse>
+          {user ? (
+            <UncontrolledDropdown className="py-3">
+              <DropdownToggle nav caret>
+                {data?.name}
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem
+                  onClick={() => {
+                    auth.signOut();
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("userDoc");
+                  }}
+                >
+                  <Link className="text-dark" to="/">
+                    Sign Out
+                  </Link>
+                </DropdownItem>
+                <DropdownItem>
+                  <Link className="text-dark" to = {`/${user.uid}`}>
+                    View Profile
+                  </Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          ) : (
+            <div className="d-flex">
+              <Link className=" ml-3" to="/loghospital">
+                Log In
+              </Link>
+              <Link className="ml-3" to="/signhospital">
+                Sign Up
+              </Link>
+            </div>
+          )}
         </Navbar>
       </div>
     </div>
