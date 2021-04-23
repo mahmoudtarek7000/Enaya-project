@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/" component={Home}></Route>
           <Route path="/about" component={About_us}></Route>
           <Route path="/contact" component={Contact_us}></Route>
-          <Route path="/bookdoctor/:id" component={BookDoctor}></Route>
+          <Route path="/bookdoctor/:special/:id/:hospitalId" component={BookDoctor}></Route>
           <Route path="/reserveroom" component={ReserveRoom}></Route>
           <Route
             path="/signhospital"

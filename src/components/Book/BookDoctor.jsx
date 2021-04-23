@@ -14,15 +14,29 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
-function BookDoctor(query) {
-    const doctor = query.location.query.doctor;
-    const hospitalTitle = query.location.query.hospitalTitle;
+function BookDoctor({match}) {
+    const result = match.params;
+    const [doctor, setdoctor] = useState({})
+    const [hospitalTitle, setTitle] = useState("")
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const [selectedTime, setSelectedTime] = React.useState(new Date());
     const [sentData, setData] = useState([]);
     const [sentName, setName] = useState("");
     const [sentMail, setMail] = useState("");
-    const [submitting, setSubmitting] = useState(false);
+    
+    useEffect(() => {
+      db.collection('hospitals').doc(`${result.hospitalId}`).get().then((doc) => {
+        let doctorsArr = doc.data().specialities[result.special];
+        let hospitalName = doc.data().name;
+        let bookedDoctor = doctorsArr.find((doctor)=>{
+          return doctor.id == `${result.id}` 
+          })
+        setdoctor(bookedDoctor);
+        console.log(bookedDoctor)
+        setTitle(hospitalName);
+    })
+    }, [])
+
     const handleChanges = ({ target }) => {
       switch(target.name){
       case 'patientName':
@@ -37,7 +51,8 @@ function BookDoctor(query) {
     };
   
     const handleBooking = async()=>{
-      let updateData = async()=>{
+
+     let updatePatientData = async()=>{
         await db.collection("patients").doc("vm1oNQ6BKyYmRnreCtGrVTf8Iwe2").update({
        booking_data : firebase.firestore.FieldValue.arrayUnion({ 
         patientName:sentName,
@@ -49,15 +64,34 @@ function BookDoctor(query) {
        })
      })
      .then(() => {
-       console.log("Document successfully updated!");
+       console.log("Document in patient successfully updated!");
      })
      .catch((error) => {
        // The document probably doesn't exist.
        console.error("Error updating document: ", error);
      });
-    }
-      setSubmitting(true);
-     await updateData();
+    } 
+    let updateHospitalData = async()=>{
+      await db.collection("hospitals").doc(`${result.hospitalId}`).update({
+     booking_data : firebase.firestore.FieldValue.arrayUnion({ 
+      patientName:sentName,
+      patientMail:sentMail,
+      date: selectedDate,
+      hospitalName:hospitalTitle,
+      doctorName:doctor.name,
+      Time: selectedTime,
+     })
+   })
+   .then(() => {
+     console.log("Document in hospital successfully updated!");
+   })
+   .catch((error) => {
+     // The document probably doesn't exist.
+     console.error("Error updating document: ", error);
+   });
+  }
+     await updatePatientData();
+     await updateHospitalData();
     }
     return (
         <div className='booking'>

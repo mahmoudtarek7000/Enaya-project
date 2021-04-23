@@ -48,14 +48,15 @@ function Hospital_card({results,hospitals,doctors}) {
     }
         { doctors && doctors.map((resultDoctor)=>
         resultDoctor.results.map((doctor)=>
-        { return <div key={doctor.id}>
+        { console.log(resultDoctor.hospitalId)
+          return <div key={doctor.id}>
         <Card className="d-flex flex-row card my-5 rounded p-4 result-card">
      <CardImg top className="img-fluid photo w-25 rounded-circle" src={doctor.photo} alt="Card image cap" />
      <CardBody>
        <CardTitle className="mb-2 d-flex txt" tag="h6">{doctor.name}
        <Link
             to={{
-              pathname: `/bookdoctor/${doctor.id}`,
+              pathname: `/bookdoctor/${resultDoctor.speciality}/${doctor.id}/${resultDoctor.hospitalId}`,
               query: {
                 doctor:doctor,
                 hospitalTitle:resultDoctor.hospitalTitle
@@ -73,7 +74,7 @@ function Hospital_card({results,hospitals,doctors}) {
       
        <Link
             to={{
-              pathname: `/bookdoctor/${doctor.id}`,
+              pathname: `/bookadoctor/${doctor.id}/id/${resultDoctor.hospitalId}`,
               query: doctor,
             }}
             className='btn-sm view-btn btn-info ml-auto d-none d-xl-block link-unstyled py-3 px-4'

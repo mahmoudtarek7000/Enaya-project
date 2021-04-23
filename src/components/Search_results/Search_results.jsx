@@ -153,11 +153,12 @@ function Search_results({ match }) {
            console.log(doc.data().specialities[results.special])
            // search for doctors by speciality only
            if ((results.city == "none" && results.name == "none" && results.special !== "none") && doc.data().specialities[results.special]) {
-            return [...acc, { results: [...doc.data().specialities[results.special]], hospitalTitle: doc.data().name, hospitalCity: doc.data().address.governorate }]
+             console.log(doc.id)
+            return [...acc, { results: [...doc.data().specialities[results.special]], hospitalTitle: doc.data().name, hospitalCity: doc.data().address.governorate, hospitalId:doc.id, speciality:`${results.special}`}]
            }
            // search for doctors by city and speciality
            else if ((results.city !== "none" && results.name == "none" && results.special !== "none") &&( doc.data().specialities[results.special])&& doc.data().address.governorate==`${results.city}`){
-            return [...acc, { results: [...doc.data().specialities[results.special]], hospitalTitle: doc.data().name, hospitalCity: doc.data().address.governorate }]
+            return [...acc, { results: [...doc.data().specialities[results.special]], hospitalTitle: doc.data().name, hospitalCity: doc.data().address.governorate, hospitalId:doc.id ,speciality:`${results.special}`}]
            }
            else {
              return acc
