@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "../../assets/scss/_headerHospitalProfile.scss";
 import { AiFillStar } from "react-icons/ai";
 import {
@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { FiEdit } from "react-icons/fi";
 import { db, storage } from "../firebase/config";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Header = ({ logo, name, coverPhoto, documentId }) => {
   const coverRef = useRef();
@@ -25,6 +26,7 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
   const [logomodal, setlogoModal] = useState(false);
   const togglelogo = () => setlogoModal(!logomodal);
   const [logoProgress, setLogoProgress] = useState(0);
+  const { user } = useContext(AuthContext);
 
   const changeImg = (e, type, ref) => {
     const file = e.target.files[0];
@@ -78,17 +80,15 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
               alt="logo"
               className="rounded-circle w-100 shadow-lg rounded"
             />
-            <FiEdit
-              className="my-3 position-absolute bttn text-dark h3 ml-3 rounded-circle rounded"
-              onClick={togglelogo}
-            />
+            {user.uid === documentId && (
+              <FiEdit
+                className="my-3 position-absolute bttn text-dark h3 ml-3 rounded-circle rounded"
+                onClick={togglelogo}
+              />
+            )}
           </div>
           <div>
             <h3 className="mb-0  rounded">{name}</h3>
-            {/* <div className="rate">
-              <AiFillStar className=" shadow-lg rounded" />
-              <span className=" shadow-lg rounded">4.5</span>
-            </div> */}
           </div>
           <Modal isOpen={logomodal} fade={false} toggle={togglelogo}>
             <ModalHeader toggle={togglelogo}>Add Logo</ModalHeader>
@@ -116,12 +116,14 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
             </ModalBody>
           </Modal>
         </div>
-        <div>
+        <div> 
           <div className="w-100 text-right">
-            <FiEdit
-              className="h3 my-3 ml-auto text-info bttn"
-              onClick={toggle}
-            />
+            {user.uid === documentId && (
+              <FiEdit
+                className="h3 my-3 ml-auto text-info bttn btn-margin"
+                onClick={toggle}
+              />
+            )}
           </div>
           <Modal isOpen={modal} fade={false} toggle={toggle}>
             <ModalHeader toggle={toggle}>Add Photo</ModalHeader>

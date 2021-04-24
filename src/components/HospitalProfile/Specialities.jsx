@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -15,9 +15,23 @@ import {
   FormGroup,
   Label,
   Input,
-  Progress
+  Progress,
 } from "reactstrap";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardImg,
+} from "reactstrap";
+
 import { db, storage } from "../firebase/config";
+import { AuthContext } from "../../context/AuthProvider";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,7 +95,7 @@ const specialitiesArr = [
   "Vascular Surgery",
 ];
 
-const Specialities = ({ specialitiesH, documentId }) => {
+const Specialities = ({ specialitiesH, documentId, name }) => {
   const classes = useStyles();
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -89,6 +103,11 @@ const Specialities = ({ specialitiesH, documentId }) => {
   const imgRef = useRef();
   const [progress, setProgress] = useState(0);
   const [imgURL, setimgURL] = useState(null);
+  const { user, userType } = useContext(AuthContext);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDrop = () => setDropdownOpen((prevState) => !prevState);
+  const [lastClicked, setLastClicked] = useState("Select A Speciality");
 
   const handleChange = (e) => {
     setData({
@@ -133,70 +152,92 @@ const Specialities = ({ specialitiesH, documentId }) => {
                   photo: imgURL,
                 },
               ]
-            : [{
-                id:
-                  Date.now().toString(36) +
-                  Math.random().toString(36).substr(2, 5),
-                name,
-                title,
-                photo: imgURL,
-              }],
+            : [
+                {
+                  id:
+                    Date.now().toString(36) +
+                    Math.random().toString(36).substr(2, 5),
+                  name,
+                  title,
+                  photo: imgURL,
+                },
+              ],
         },
       });
   };
-
+  useEffect(() => {
+    console.log(lastClicked);
+    console.log(specialitiesH[lastClicked]);
+  }, [lastClicked]);
   return (
     <div className="section-cont">
       <div className="container">
         <h2>Specialities</h2>
-        <div className="text-right py-4">
-          <Button color="danger my-3" onClick={toggle}>
-            Add Doctor
-          </Button>
-          <button type="button" className="btn btn-info">
-            Book An Appointment
-          </button>
+        <div className="text-center text-md-right">
+          <Dropdown isOpen={dropdownOpen} toggle={toggleDrop}>
+            <DropdownToggle caret className="bttn-primary">
+              {lastClicked}
+            </DropdownToggle>
+            <DropdownMenu container="body">
+              {specialitiesH &&
+                Object.keys(specialitiesH).map((property, index) => {
+                  return (
+                    <DropdownItem
+                      key={property}
+                      onClick={() => setLastClicked(property)}
+                    >
+                      {property}
+                    </DropdownItem>
+                  );
+                })}
+            </DropdownMenu>
+          </Dropdown>
         </div>
-        <div className={classes.root}>
-          {specialitiesH && Object.keys(specialitiesH).map((property, index) => {
-            return (
-              <Accordion key={index}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography className={classes.heading}>
-                    {property}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <div className="row">
-                    {specialitiesH[property].map((item) => {
-                      return (
-                        <div
-                          key={item.id}
-                          className="col-12 col-md-6 d-flex align-items-center pl-2 mb-3"
-                        >
-                          <div className="w-25 mr-3">
-                            <img
-                              src={item.photo}
-                              alt="image1"
-                              className="w-100 rounded-circle"
-                            />
-                          </div>
-                          <div>
-                            <h4>{item.name}</h4>
-                            <p>{item.title}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </AccordionDetails>
-              </Accordion>
-            );
-          })}
+        <div className="text-right py-4">
+          {user.uid === documentId && (
+            <div className="text-center mb-5">
+              <Button className="bttn-primary mr-3" onClick={toggle}>
+                Add Doctor
+              </Button>
+              <Button type="button" className="bttn-primary">
+                <Link className="text-white" to={`/appointments/${documentId}`}>Appointments</Link>
+              </Button>
+            </div>
+          )}
+        </div>
+        <div className="row justify-content-center">
+          {lastClicked !== "Select A Speciality" &&
+            specialitiesH[lastClicked].map((item) => {
+              return (
+                <Card key={item.id} className="col-12 col-md-3 mx-3 mb-5">
+                  <CardImg
+                    top
+                    width="100%"
+                    src={item.photo}
+                    alt="Card image cap"
+                    className="img-doc"
+                  />
+                  <CardBody>
+                    <CardTitle tag="h4">{item.name}</CardTitle>
+                    <CardText> {item.title} </CardText>
+                    {userType === "patients" && (
+                      <Link
+                        to={{
+                          pathname: `/bookdoctor/${lastClicked}/${item.id}/${documentId}`,
+                          query: {
+                            doctor: item,
+                            hospitalTitle: name,
+                          },
+                        }}
+                        className="view-btn btn-info ml-auto text-center d-none d-xl-block link-unstyled py-2 px-2 h5"
+                      >
+                        Book A Doctor
+                      </Link>
+                    )}
+                  </CardBody>
+                </Card>
+              );
+            })}
         </div>
         <div>
           <Modal isOpen={modal} fade={false} toggle={toggle}>

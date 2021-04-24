@@ -12,9 +12,10 @@ const initialState = {
 const useForm = (validate) => {
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
-  const { handleUserProfile } = useContext(AuthContext);
+  const { handleUserProfile,setUserType } = useContext(AuthContext);
   const [submiterror, setsubmiterror] = useState()
   const [focused, setFocused] =useState({})
+
   const handleChange = (e) => {
     setFocused({...focused, [e.target.name] : e.bubbles})
     const { name, value } = e.target;
@@ -31,6 +32,9 @@ const useForm = (validate) => {
     e.preventDefault();
     const { name, email, password, coverPhoto, logo} = values;
     if (Object.keys(errors).length === 0 && Object.keys(focused).length === 4) {
+      localStorage.setItem("user", userType);
+      setUserType(localStorage.getItem("user"));
+
       try {
         const { user } = await auth.createUserWithEmailAndPassword(
           email,

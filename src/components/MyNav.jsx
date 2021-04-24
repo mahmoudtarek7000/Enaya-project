@@ -23,11 +23,11 @@ const MyNav = (props) => {
   const [data, setdata] = useState(null);
 
   useEffect(() => {
+    console.log(userType)
     if (userType && user) {
       db.collection(userType)
         .doc(user.uid)
         .onSnapshot((doc) => {
-          console.log("object");
           if (doc.exists) {
             console.log("Document data:", doc.data());
             setdata({ ...doc.data(), id: doc.id });
@@ -68,7 +68,7 @@ const MyNav = (props) => {
                   How To
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <Link to="/bookdoctor">
+                  <Link to="/bookdoc">
                     <DropdownItem>Book A Doctor</DropdownItem>
                   </Link>
                   <Link to="/reserveroom">
@@ -76,7 +76,7 @@ const MyNav = (props) => {
                   </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Search By
                 </DropdownToggle>
@@ -87,11 +87,11 @@ const MyNav = (props) => {
                   <DropdownItem>Hospitals</DropdownItem>
                   <DropdownItem>Available Intensive Care Room</DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
           {user ? (
-            <UncontrolledDropdown className="py-3">
+            <UncontrolledDropdown className="py-1">
               <DropdownToggle nav caret>
                 {data?.name}
               </DropdownToggle>

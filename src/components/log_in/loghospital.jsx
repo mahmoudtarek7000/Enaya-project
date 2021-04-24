@@ -34,7 +34,7 @@ const Loghospital = () => {
     e.preventDefault();
     setSubmitting(true);
     localStorage.setItem('user',`${userRole}`)
-    userLogin();
+    // userLogin();
   };
   return (
     <div className="section-cont">

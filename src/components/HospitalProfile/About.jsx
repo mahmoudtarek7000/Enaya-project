@@ -1,5 +1,5 @@
 import { CodeSharp } from "@material-ui/icons";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Button,
   Modal,
@@ -14,6 +14,7 @@ import {
 import { db } from "../firebase/config";
 import { ImLocation2, ImMobile } from "react-icons/im";
 import { AiFillPhone } from "react-icons/ai";
+import { AuthContext } from "../../context/AuthProvider";
 
 const About = ({
   building,
@@ -22,6 +23,7 @@ const About = ({
   phone,
   mobile,
   documentId,
+  intensiveCares,
 }) => {
   const initialState = {
     buildingNumber: building ? building : "",
@@ -29,9 +31,11 @@ const About = ({
     phone: phone ? phone : "",
     streetName: street ? street : "",
     governorate: governorate ? governorate : "Cairo",
+    intensiveCares: intensiveCares ? intensiveCares : "",
   };
 
   const [modal, setModal] = useState(false);
+
   const cities = [
     { id: "1", governorate_name_ar: "القاهرة", governorate_name_en: "Cairo" },
     { id: "2", governorate_name_ar: "الجيزة", governorate_name_en: "Giza" },
@@ -120,6 +124,8 @@ const About = ({
 
   const toggle = () => setModal(!modal);
   const [data, setData] = useState(initialState);
+  const { user } = useContext(AuthContext);
+
   const handleChange = (e) => {
     setData({
       ...data,
@@ -127,7 +133,14 @@ const About = ({
     });
   };
   const handleSubmit = () => {
-    const { buildingNumber, mobile, phone, streetName, governorate } = data;
+    const {
+      buildingNumber,
+      mobile,
+      phone,
+      streetName,
+      governorate,
+      intensiveCares,
+    } = data;
     db.collection("hospitals").doc(documentId).update({
       address: {
         buildingNumber,
@@ -136,6 +149,7 @@ const About = ({
       },
       mobile,
       phone,
+      intensiveCares,
     });
   };
 
@@ -143,29 +157,38 @@ const About = ({
     <div className="about section-cont">
       <div className="container">
         <h2 className="text-center mb-5">About</h2>
-        <Button color="danger my-3" onClick={toggle}>
-          Edit Info
-        </Button>
+        <div className="text-center">
+          {user.uid === documentId && (
+            <Button className=" my-3 bttn-primary px-4 py-2" onClick={toggle}>
+              Edit Info
+            </Button>
+          )}
+        </div>
         <div>
           {(building || street || governorate) && (
             <div className="d-flex align-items-start py-2">
-              <ImLocation2  className="mr-2 h4 text-danger"/>
-              <p className="mr-2 ">Location : </p> 
-              <p >
+              <ImLocation2 className="mr-2 h4 text-danger" />
+              <p className="mr-2 text-dark">Location : </p>
+              <p className="text-dark">
                 {building} {street} {governorate}
               </p>
             </div>
           )}
           {phone && (
-            <p>
-              <AiFillPhone />
-              Telephone : {phone}
-            </p>
+            <div className="d-flex align-items-start py-2">
+              <AiFillPhone className="mr-2 h4 text-primary" />
+              <p className="text-dark">Telephone : {phone}</p>
+            </div>
           )}
           {mobile && (
-            <p>
-              <ImMobile />
-              Mobile : {mobile}
+            <div className="d-flex align-items-start py-2">
+              <ImMobile className="mr-2 h4 text-primary" />
+              <p className="text-dark">Mobile : {mobile}</p>
+            </div>
+          )}
+          {intensiveCares && (
+            <p className="text-dark">
+              Avilable Intensive Cares : {intensiveCares}
             </p>
           )}
         </div>
@@ -242,6 +265,17 @@ const About = ({
                   placeholder="Mobile"
                   onChange={handleChange}
                   value={data.mobile}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="intensiveCares">Intensive Cares Num.</Label>
+                <Input
+                  type="text"
+                  name="intensiveCares"
+                  id="intensiveCares"
+                  placeholder="Intensive Cares Num."
+                  onChange={handleChange}
+                  value={data.intensiveCares}
                 />
               </FormGroup>
             </Form>

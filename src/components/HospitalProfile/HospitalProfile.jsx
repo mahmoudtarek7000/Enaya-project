@@ -76,7 +76,7 @@ const HospitalProfile = () => {
               Specialities And Doctors
             </NavLink>
           </NavItem>
-          <NavItem className="btn">
+          {/* <NavItem className="btn">
             <NavLink
               className={classnames({ active: activeTab === "4" })}
               onClick={() => {
@@ -85,7 +85,7 @@ const HospitalProfile = () => {
             >
               Rooms
             </NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
       </div>
       {data && (
@@ -99,6 +99,7 @@ const HospitalProfile = () => {
               phone={data?.phone}
               mobile={data?.mobile}
               documentId={documentId}
+              intensiveCares ={data?.intensiveCares}
             />
           </TabPane>
           <TabPane tabId="2">
@@ -108,6 +109,7 @@ const HospitalProfile = () => {
             <Specialities
               specialitiesH={data.specialities ? data.specialities : {}}
               documentId={documentId}
+              name={data.name}
             />
           </TabPane>
           <TabPane tabId="4">

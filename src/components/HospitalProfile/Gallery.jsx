@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Button,
   Modal,
@@ -11,6 +11,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
+import { AuthContext } from "../../context/AuthProvider";
 import { db, storage } from "../firebase/config";
 
 const Gallery = ({ galleryImgs, documentId }) => {
@@ -18,6 +19,7 @@ const Gallery = ({ galleryImgs, documentId }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const [progress, setProgress] = useState(0);
+  const { user } = useContext(AuthContext);
 
   const changeImg = (e) => {
     const file = e.target.files[0];
@@ -51,31 +53,42 @@ const Gallery = ({ galleryImgs, documentId }) => {
 
   const removeImg = (e) => {
     const newGallery = galleryImgs.filter((item) => item != e.target.id);
-    db.collection("hospitals")
-      .doc(documentId)
-      .update({
-        gallery: newGallery,
-      });
+    db.collection("hospitals").doc(documentId).update({
+      gallery: newGallery,
+    });
   };
 
   return (
     <div className="section-cont">
       <div className="container">
         <h2 className="text-center mb-5">Gallery</h2>
-        <Button color="danger" className="py-3" onClick={toggle}>
-          Add Photo
-        </Button>
+        {user.uid === documentId && (
+          <div className="text-center">
+            <Button className=" my-3 bttn-primary px-4 py-2" onClick={toggle}>
+              Add Photo
+            </Button>
+          </div>
+        )}
         <div className="row">
-          {galleryImgs && galleryImgs.map((item, index) => {
-            return (
-              <div key={item + index} className="col-12 col-md-4 p-3">
-                <img src={item} alt="image1" className="w-100" />
-                <Button color="danger" id={item} onClick={removeImg}>
-                  Delete Photo
-                </Button>
-              </div>
-            );
-          })}
+          {galleryImgs &&
+            galleryImgs.map((item, index) => {
+              return (
+                <div key={item + index} className="col-12 col-md-4 p-3">
+                  <img src={item} alt="image1" className="w-100 img-gallery" />
+                  {user.uid === documentId && (
+                    <div className="text-center mt-auto">
+                      <Button
+                        className=" my-3 bttn-primary px-4 py-2"
+                        id={item}
+                        onClick={removeImg}
+                      >
+                        Delete Photo
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
         </div>
         <Modal isOpen={modal} fade={false} toggle={toggle}>
           <ModalHeader toggle={toggle}>Add Photo</ModalHeader>
