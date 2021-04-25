@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { auth, db } from "./firebase/config";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -23,7 +23,7 @@ const MyNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [data, setdata] = useState(null);
-
+  const history = useHistory();
   useEffect(() => {
     console.log(userType);
     if (userType && user) {
@@ -95,6 +95,7 @@ const MyNav = () => {
                         auth.signOut();
                         localStorage.removeItem("user");
                         localStorage.removeItem("userDoc");
+                        history.push("/")
                       }}
                     >
                       <Link className="text-dark" to="/">

@@ -75,7 +75,7 @@ const Gallery = ({ galleryImgs, documentId }) => {
               return (
                 <div key={item + index} className="col-12 col-md-4 p-3">
                   <img src={item} alt="image1" className="w-100 img-gallery" />
-                  {user.uid === documentId && (
+                  {user?.uid === documentId && (
                     <div className="text-center mt-auto">
                       <Button
                         className=" my-3 bttn-primary px-4 py-2"

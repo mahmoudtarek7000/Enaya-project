@@ -164,6 +164,7 @@ const Specialities = ({ specialitiesH, documentId, name }) => {
               ],
         },
       });
+      setProgress(0);
   };
   useEffect(() => {
     console.log(lastClicked);
