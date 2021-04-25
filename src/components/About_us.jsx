@@ -6,7 +6,7 @@ function About_us() {
   return (
     <div className="aboutUs">
       <div className="container">
-        <h2 className="text-left">About Us</h2>
+        <h2 className="text-center mb-5">About Us</h2>
         <p>
           Enaya.com is the leading digital healthcare booking platform and
           practice management software in MENA. We are pioneering the shift to
@@ -24,7 +24,7 @@ function About_us() {
           strive to lead every aspect of the healthcare industry and continue to
           launch products that have positive impact on people’s lives.
         </p>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" className="mt-5" color="primary">
           <Link to="/contact">Contact Us</Link>
         </Button>
       </div>

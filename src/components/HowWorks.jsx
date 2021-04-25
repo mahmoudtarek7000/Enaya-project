@@ -8,7 +8,7 @@ function HowWorks() {
       <div className="container">
         <div className="howWorks-header pb-5">
           <p className="text-center">We Made It Simple</p>
-          <h2>How We Works?</h2>
+          <h2 className="mb-5">How We Works?</h2>
           <p className="text-center">
             Enaya culture fosters learning, adaptability and disruption. A
             culture that equips youth with skills, opportunities and a network

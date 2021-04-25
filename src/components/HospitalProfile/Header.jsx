@@ -72,7 +72,8 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
       className="header section-cont"
       style={{ backgroundImage: `url(${coverPhoto})` }}
     >
-      <div className="container  d-flex justify-content-center align-items-stretch  h-100">
+      <div className="container  d-flex justify-content-center align-items-stretch h-100">
+
         <div className="logo-name_cont d-flex flex-column align-items-center align-self-end ">
           <div className="profile_logo mr-3 d-flex justify-content-between align-items-start position-relative">
             <img
@@ -117,14 +118,16 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
           </Modal>
         </div>
         <div> 
-          <div className="w-100 text-right">
+          <div className="w-100 text-right coverBtn">
             {user.uid === documentId && (
               <FiEdit
-                className="h3 my-3 ml-auto text-info bttn btn-margin"
+                className="h3 my-3 ml-auto text-right text-info bttn btn-margin "
                 onClick={toggle}
               />
             )}
           </div>
+
+
           <Modal isOpen={modal} fade={false} toggle={toggle}>
             <ModalHeader toggle={toggle}>Add Photo</ModalHeader>
             <ModalBody>

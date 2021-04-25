@@ -72,6 +72,26 @@ function Search_results({ match }) {
         }, []);
         sethospitals(nameResults);
       }
+       // search by speciality and name and city
+      else if (
+        results.city !== "none" &&
+        results.name !== "none" &&
+        results.special !== "none"
+      ) {
+        console.log(allHospitals);
+        const nameResults = fuseResults.reduce((acc, result) => {
+          // doc.data() is never undefined for query doc snapshots
+          if (
+            result.item.specialities.hasOwnProperty(`${results.special}`) ===
+            true && result.item.address.governorate == `${results.city}`
+          ) {
+            return [...acc, result.item];
+          } else {
+            return acc;
+          }
+        }, []);
+        sethospitals(nameResults);
+      }
     }
   }, [allHospitals]);
 
