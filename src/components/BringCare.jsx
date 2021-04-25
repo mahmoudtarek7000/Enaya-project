@@ -1,4 +1,6 @@
-import { Button, Link } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
 import React from "react";
 import png from "../assets/images/img.png";
 
@@ -8,7 +10,7 @@ function BringCare() {
       <div className="container">
         <div className="row">
           <div className="col-lg-6 mb-5">
-            <h2 className="text-left">
+            <h2 className="text-left mb-3">
               Bring Care to Your
               <span>Home With One Click</span>
             </h2>

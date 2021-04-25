@@ -34,7 +34,7 @@ const Rooms = ({rooms}) => {
             </AccordionSummary>
             <AccordionDetails>
               <div className="row">
-                <div className="col-12 col-md-4 p-3">
+                {/* <div className="col-12 col-md-4 p-3">
                   <img src={rooms[0].photo} alt="image1" className="w-100" />
                 </div>
                 <div className="col-12 col-md-4 p-3">
@@ -51,7 +51,7 @@ const Rooms = ({rooms}) => {
                 </div>
                 <div className="col-12 col-md-4 p-3">
                   <img src={rooms[0].photo} alt="image1" className="w-100" />
-                </div>
+                </div> */}
               </div>
             </AccordionDetails>
           </Accordion>

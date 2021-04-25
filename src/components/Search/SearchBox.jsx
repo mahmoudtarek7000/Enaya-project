@@ -3,7 +3,7 @@ import SearchForm from "./SearchForm";
 
 function SearchBox() {
   return (
-    <div className="search-box">
+    <div>
       <SearchForm />
     </div>
   );
