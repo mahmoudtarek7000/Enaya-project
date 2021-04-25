@@ -80,7 +80,11 @@ const MyNav = () => {
                 </DropdownMenu>
               </UncontrolledDropdown>
               {user ? (
+<<<<<<< HEAD
                 <UncontrolledDropdown >
+=======
+                <UncontrolledDropdown className="mt-1">
+>>>>>>> b9421816c55b3d131876dc16784baeeb94e8dd11
                   <DropdownToggle nav caret>
                     {data?.name}
                   </DropdownToggle>

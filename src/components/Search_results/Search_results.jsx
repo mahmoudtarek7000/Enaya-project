@@ -282,8 +282,12 @@ function Search_results({ match }) {
               hospitals={currentHospitalResults}
               doctors={currentDoctorResults}
             />
+<<<<<<< HEAD
 
             {/*hospitals.length / resultsPerPage ||
+=======
+            {(hospitals.length / resultsPerPage ||
+>>>>>>> b9421816c55b3d131876dc16784baeeb94e8dd11
               doctors.length / resultsPerPage) > 1 && (
               <Pagination_component
                 resultsPerPage={resultsPerPage}
@@ -293,7 +297,11 @@ function Search_results({ match }) {
                 totalHospitals={hospitals.length}
                 totalDoctors={doctors.length}
               />
+<<<<<<< HEAD
               )*/}
+=======
+            )}
+>>>>>>> b9421816c55b3d131876dc16784baeeb94e8dd11
           </div>
         </div>
       </div>

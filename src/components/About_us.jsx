@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 
 function About_us() {
   return (
+<<<<<<< HEAD
     <div className="aboutUs py-5">
+=======
+    <div className="aboutUs">
+>>>>>>> b9421816c55b3d131876dc16784baeeb94e8dd11
       <div className="container">
         <h2 className="text-center mb-5">About Us</h2>
         <p>

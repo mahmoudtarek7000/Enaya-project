@@ -154,9 +154,15 @@ function SearchForm() {
     <div className="search-form">
       <form className="search-box py-5">
         <div className="text-center py-3">
+<<<<<<< HEAD
           <p className="text-white h1">Enaya</p>
         </div>
         <div className="row text-center justify-content-center">
+=======
+          <p className="text-white h1">Enaya.com</p>
+        </div>
+        <div className="row text-center justify-content-center ml-3">
+>>>>>>> b9421816c55b3d131876dc16784baeeb94e8dd11
           <div className="col-12 d-flex justify-content-center">
             <div className="select  mb-5">
               <select name="seacrh_for" onChange={sentQuery} id="search_for">
