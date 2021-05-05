@@ -12,7 +12,7 @@ function Selling() {
       <Card
         iconUrl="https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/26308/_next/static/images/doctor-icon.svg"
         header="Verified patient reviews"
-        paragraph="Doctor ratings are from patients who booked and visited the doctor through Vezeeta."
+        paragraph="Doctor ratings are from patients who booked and visited the doctor through Enaya."
       />
       <Card
         iconUrl="https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/26308/_next/static/images/booking-icon.svg"
@@ -22,7 +22,7 @@ function Selling() {
       <Card
         iconUrl="https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/26308/_next/static/images/security-icon.svg"
         header="Book for free, and pay in the Hospital"
-        paragraph="The consultation fees stated on Vezeeta are the actual doctor's fees with no extra charges."
+        paragraph="The consultation fees stated on Enaya are the actual doctor's fees with no extra charges."
       />
     </div>
   );

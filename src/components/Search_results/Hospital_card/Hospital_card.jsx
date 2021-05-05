@@ -59,7 +59,7 @@ function Hospital_card({ results, hospitals, doctors }) {
                   <CardSubtitle tag="h6" className="mb-4 text-muted">
                     <BiHealth className="result-icon ml-4" />
                     <span className="ml-2">
-                      avilable intensive rooms: {hospital.intensiveCares}
+                    intensive care: {hospital.intensiveCares}
                     </span>
                   </CardSubtitle>
 
