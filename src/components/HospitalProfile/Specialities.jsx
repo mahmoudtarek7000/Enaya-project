@@ -195,7 +195,7 @@ const Specialities = ({ specialitiesH, documentId, name }) => {
           </Dropdown>
         </div>
         <div className="text-right py-4">
-          {user.uid === documentId && (
+          {user && user.uid === documentId && (
             <div className="text-center mb-5">
               <Button className="bttn-primary mr-3" onClick={toggle}>
                 Add Doctor

@@ -62,7 +62,7 @@ const Gallery = ({ galleryImgs, documentId }) => {
     <div className="section-cont">
       <div className="container">
         <h2 className="text-center mb-5">Gallery</h2>
-        {user.uid === documentId && (
+        {user && user.uid === documentId && (
           <div className="text-center">
             <Button className=" my-3 bttn-primary px-4 py-2" onClick={toggle}>
               Add Photo
@@ -75,7 +75,7 @@ const Gallery = ({ galleryImgs, documentId }) => {
               return (
                 <div key={item + index} className="col-12 col-md-4 p-3">
                   <img src={item} alt="image1" className="w-100 img-gallery" />
-                  {user?.uid === documentId && (
+                  {user && user?.uid === documentId && (
                     <div className="text-center mt-auto">
                       <Button
                         className=" my-3 bttn-primary px-4 py-2"

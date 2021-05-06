@@ -23,17 +23,17 @@ function Hospital_card({ results, hospitals, doctors }) {
       {hospitals &&
         hospitals.map((hospital) => {
           return (
-            <div key={hospital.id}>
+            <div key={hospital?.id}>
               <Card className="d-flex flex-row card my-5  rounded p-4 result-card">
                 <CardImg
                   top
                   className="img-fluid photo w-25  rounded-circle"
-                  src={hospital.logo}
+                  src={hospital?.logo}
                   alt="Card image cap"
                 />
                 <CardBody>
                   <CardTitle className="mb-4 d-flex txt" tag="h6">
-                    {hospital.name}
+                    {hospital?.name}
                     <Link
                       to={{
                         pathname: `/hospitals/${hospital.id}`,
@@ -46,20 +46,20 @@ function Hospital_card({ results, hospitals, doctors }) {
 
                   <CardSubtitle tag="h6" className="mb-4 text-muted">
                     <FaPhoneAlt className="result-icon ml-4" />
-                    <span className="ml-2">{hospital.phone}</span>
+                    <span className="ml-2">{hospital?.phone}</span>
                   </CardSubtitle>
                   <CardSubtitle tag="h6" className="mb-4 text-muted">
                     <HiLocationMarker className="result-icon ml-4" />
-                    <span className="ml-2">{hospital.address.governorate}</span>
+                    <span className="ml-2">{hospital?.address?.governorate}</span>
                   </CardSubtitle>
                   <CardSubtitle tag="h6" className="mb-4 text-muted">
                     <FaMobileAlt className="result-icon ml-4" />
-                    <span className="ml-2"> {hospital.mobile}</span>
+                    <span className="ml-2"> {hospital?.mobile}</span>
                   </CardSubtitle>
                   <CardSubtitle tag="h6" className="mb-4 text-muted">
                     <BiHealth className="result-icon ml-4" />
                     <span className="ml-2">
-                      avilable intensive rooms: {hospital.intensiveCares}
+                      avilable intensive rooms: {hospital?.intensiveCares}
                     </span>
                   </CardSubtitle>
 

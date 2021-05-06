@@ -158,7 +158,7 @@ const About = ({
       <div className="container">
         <h2 className="text-center mb-5">About</h2>
         <div className="text-center">
-          {user.uid === documentId && (
+          {user && user.uid === documentId && (
             <Button className=" my-3 bttn-primary px-4 py-2" onClick={toggle}>
               Edit Info
             </Button>

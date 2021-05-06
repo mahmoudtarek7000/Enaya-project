@@ -81,7 +81,7 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
               alt="logo"
               className="rounded-circle w-100 shadow-lg rounded"
             />
-            {user.uid === documentId && (
+            {user && user.uid === documentId && (
               <FiEdit
                 className="my-3 position-absolute bttn text-dark h3 ml-3 rounded-circle rounded"
                 onClick={togglelogo}
@@ -119,7 +119,7 @@ const Header = ({ logo, name, coverPhoto, documentId }) => {
         </div>
         <div> 
           <div className="w-100 text-right coverBtn">
-            {user.uid === documentId && (
+            {user && user.uid === documentId && (
               <FiEdit
                 className="h3 my-3 ml-auto text-right text-info bttn btn-margin "
                 onClick={toggle}
