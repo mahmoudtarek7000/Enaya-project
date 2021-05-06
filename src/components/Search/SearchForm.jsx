@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
-
+import img from "../../assets/images/img12.png"
 function SearchForm() {
   const [city, setCity] = useState("none");
   const [hospitalName, setHospitalName] = useState("none");
@@ -154,7 +154,7 @@ function SearchForm() {
     <div className="search-form">
       <form className="search-box py-5">
         <div className="text-center py-3">
-          <p className="text-white h1">Enaya</p>
+        <img src={img} alt="logo"/>
         </div>
         <div className="row text-center justify-content-center">
           <div className="col-12 d-flex justify-content-center">

@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { auth, db } from "./firebase/config";
 import { AiOutlineMenu } from "react-icons/ai";
-
+import img4 from "../assets/images/img12.png"
 import {
   Collapse,
   Navbar,
@@ -43,8 +43,8 @@ const MyNav = () => {
     <div className="navb">
       <div className="container">
         <Navbar expand="md">
-          <Link className="nav-link h4 logo" to="/">
-            Enaya
+          <Link className="nav-link logo" to="/">
+           <img src={img4} className="img-fluid w-75 " alt="logo"/>
           </Link>
           <NavbarToggler onClick={toggle}>
             <AiOutlineMenu className="text-white" />

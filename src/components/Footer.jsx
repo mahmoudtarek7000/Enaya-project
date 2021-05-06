@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
-
+import img4 from "../assets/images/img12.png"
 function Footer() {
   return (
     <footer className="section-cont">
       <div className="container">
         <div className="row">
           <div className="col-lg-3 col-md-6">
-            <h4 className="mb-4">logo</h4>
+            <h4 className="mb-4">Enaya</h4>
             <ul className="list-unstyled">
               <li className="mb-3">
                 <Link to="/about">About Us</Link>{" "}
@@ -27,7 +27,7 @@ function Footer() {
             </ul>
           </div>
           <div className="col-lg-3 col-md-6">
-            <h4 className="mb-4">Are you a Hospitals?</h4>
+            <h4 className="mb-4">Are you a Hospital?</h4>
             <ul className="list-unstyled">
               <li className="mb-3">
                 <Link to="/signhospital">Join To Enaya.com</Link>{" "}

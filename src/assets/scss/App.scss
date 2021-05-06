@@ -25,6 +25,9 @@ h1 {
 // start navbar
 .navb {
   background: $primary-color;
+  .logo{
+    height: 60px !important;
+  }
   a {
     color: $white-color;
   }
