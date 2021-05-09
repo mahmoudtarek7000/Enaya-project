@@ -132,7 +132,7 @@ return doctors.map((resultDoctor) =>
     })
   )}
 else {
-  return <div className="p-5"> <h2 className="text-center p-5">No Results</h2> </div>
+  return <div className="p-5"> <h2 className="text-center m-5 p-5">No Results</h2> </div>
 }
   
 }
